@@ -9,26 +9,21 @@ public class LoginPage {
 
     RemoteWebDriver browserDriver = DriverFactory.getInstance().getDriver();
 
-    private String loginLink = ".login-form__link";
-    private String emailField = "applicant0.loginForm.email";
-    private String passwordField = "applicant0.loginForm.password";
-    private String loginSubmitButton = ".button.login-form__submit";
-    private String errorMessage = ".field__error";
+    private String uberallLogo = ".uberall-logo";
+    private String emailField = "#email";
+    private String passwordField = "#password";
+    private String loginSubmitButton = ".btn.btn-backend-default.btn-login";
 
-    public void navigateToLoginForm() {
-        browserDriver.findElement(By.cssSelector(loginLink)).click();
+    public WebElement checkUberallLogo() {
+        return browserDriver.findElement(By.cssSelector(uberallLogo));
     }
 
     public void enterLoginData() {
-        browserDriver.findElement(By.id(emailField)).sendKeys("Hallo@smava.de");
-        browserDriver.findElement(By.id(passwordField)).sendKeys("thisisapassword");
+        browserDriver.findElement(By.id(emailField)).sendKeys("maxmustermann_qa3@uberall.com");
+        browserDriver.findElement(By.id(passwordField)).sendKeys("uberall-qa-fun");
     }
 
     public void submitLoginData() {
         browserDriver.findElement(By.cssSelector(loginSubmitButton)).click();
-    }
-
-    public WebElement errorMessage(){
-        return browserDriver.findElement(By.cssSelector(errorMessage));
     }
 }
