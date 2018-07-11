@@ -43,6 +43,7 @@ public class Logger extends TestListenerAdapter {
         String testName = testresult.getName();
         log("Test '" + testName + passedString);
         log(finishLine);
+        removeDriver();
     }
 
     @Override
@@ -60,6 +61,7 @@ public class Logger extends TestListenerAdapter {
         String testMethodName = String.format(testresult.getName().trim()," ", DriverHelper.browserName);
         String screenshotName = testMethodName + ".png";
         takeScreenShot(screenshotName);
+        removeDriver();
     }
 
     @Override
@@ -68,6 +70,7 @@ public class Logger extends TestListenerAdapter {
         String testName = testresult.getName();
         log("Test '" + testName + skippedString);
         log(finishLine);
+        removeDriver();
     }
 
     @Override
@@ -100,7 +103,7 @@ public class Logger extends TestListenerAdapter {
         java.util.Date date = new java.util.Date();
         Timestamp time = new Timestamp(date.getTime() + 2 * HOUR);
 
-        directory = String.format("%s %s", time.toString().replace(":", "-"),
+        directory = String.format("Testresult %s %s", time.toString().replace(":", "-"),
                 System.getenv("BROWSER"));
 
         String location = Logger.class.getProtectionDomain().getCodeSource().getLocation().toString();
@@ -114,5 +117,9 @@ public class Logger extends TestListenerAdapter {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    private void removeDriver() {
+        DriverFactory.getInstance().removeDriver();
     }
 }

@@ -10,8 +10,8 @@ public class LoginPage {
     RemoteWebDriver browserDriver = DriverFactory.getInstance().getDriver();
 
     private String uberallLogo = ".uberall-logo";
-    private String emailField = "#email";
-    private String passwordField = "#password";
+    private String emailField = "email";
+    private String passwordField = "password";
     private String loginSubmitButton = ".btn.btn-backend-default.btn-login";
 
     public WebElement checkUberallLogo() {
@@ -23,7 +23,9 @@ public class LoginPage {
         browserDriver.findElement(By.id(passwordField)).sendKeys("uberall-qa-fun");
     }
 
-    public void submitLoginData() {
+    public DashboardPage submitLoginData() {
         browserDriver.findElement(By.cssSelector(loginSubmitButton)).click();
+
+        return new DashboardPage();
     }
 }

@@ -1,32 +1,44 @@
 package example.tests;
 
 import example.drivercreation.BuildDriver;
+import example.pageobjects.DashboardPage;
+import example.pageobjects.LocationEditPage;
+import example.pageobjects.LocationsPage;
 import example.pageobjects.LoginPage;
-import example.pageobjects.SummaryPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class UberallTest extends BuildDriver {
 
     @Test
-    public void applyForLoan() {
+    public void changeLocalIds() {
+        LoginPage loginPage = new LoginPage();
+        Assert.assertEquals(loginPage.checkUberallLogo().isDisplayed(), true, "Login page not loaded");
+        loginPage.enterLoginData();
 
-        System.out.println("Test Started.................");
+        DashboardPage dashboardPage = loginPage.submitLoginData();
+        Assert.assertEquals(dashboardPage.checkLoginStatus().isDisplayed(), true, "Login failed");
 
+        LocationsPage locationsPage = dashboardPage.navigateToLocationsPage();
+        locationsPage.performSearch("Braunschweig");
+        int numberOfresults = locationsPage.getNumberOfResults();
 
+        for (int i = 1; i <= numberOfresults; i++) {
+            LocationEditPage locationEditPage = locationsPage.navigateToLocationEditPage(Integer.toString(i));
+            if (locationEditPage.isCorrectCity()) {
+                String newIdentifier = locationEditPage.createIdentifier();
+                locationEditPage.changeLocationId(newIdentifier);
+                Assert.assertEquals(newIdentifier, locationEditPage.checkSavedIdentifier(),
+                        "Identifiers are not updated correctly");
+            }
+            dashboardPage.navigateToLocationsPage();
+            locationsPage.performSearch("Braunschweig");
+        }
+    }
 
-
-//        Homepage homepage = new Homepage();
-//        homepage.enterLoanData();
-//
-//        SummaryPage summaryPage = homepage.submit();
-//
-//        LoginPage loginPage = summaryPage.submit();
-//        loginPage.navigateToLoginForm();
-//        loginPage.enterLoginData();
-//        loginPage.submitLoginData();
-//        Assert.assertEquals(true, loginPage.errorMessage().isDisplayed());
-
-        System.out.println("Test Finished.................");
+    @Test
+    public void failedLoginTest() {
+        LoginPage loginPage = new LoginPage();
+        Assert.assertEquals(loginPage.checkUberallLogo().isDisplayed(), false, "Login page not loaded");
     }
 }

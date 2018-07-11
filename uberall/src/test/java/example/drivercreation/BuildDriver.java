@@ -49,11 +49,6 @@ public class BuildDriver {
         browserDriver.get(String.format("https://%s", DriverHelper.host));
     }
 
-    @AfterMethod
-    public void closeDriver() {
-        DriverFactory.getInstance().removeDriver();
-    }
-
     @AfterClass
     public void closeLogWriter() {
         DriverHelper.getWriter().close();

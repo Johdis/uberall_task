@@ -76,6 +76,7 @@ public class DriverFactory {
     // Quits the driver and closes the browser
     public void removeDriver()
     {
+        browserDriver.get().quit();
         browserDriver.remove();
     }
 }

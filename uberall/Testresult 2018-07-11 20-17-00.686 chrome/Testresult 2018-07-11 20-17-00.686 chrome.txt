@@ -1,0 +1,9 @@
+Test started
+-------------------------------------------------
+Test 'changeLocalIds' PASSED
+-------------------------------------------------
+Test 'failedLoginTest' FAILED
+
+Stacktrace:
+Login page not loaded expected [false] but found [true]
+-------------------------------------------------
