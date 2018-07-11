@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smava task">
+    <listeners>
+        <listener class-name="example.logging.Logger" />
+    </listeners>
+
+    <parameter name="project" value="local example" />
+    <test name="Smava task" group-by-instances="true">
+        <classes>
+            <class name="example.tests.SmavaTest" />
+        </classes>
+    </test>
+</suite>
