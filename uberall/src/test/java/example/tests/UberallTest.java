@@ -7,7 +7,7 @@ import example.pageobjects.SummaryPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SmavaTest extends BuildDriver {
+public class UberallTest extends BuildDriver {
 
     @Test
     public void applyForLoan() {

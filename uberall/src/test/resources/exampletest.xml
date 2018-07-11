@@ -2,15 +2,15 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Smava task">
+<suite name="Uberall task">
     <listeners>
         <listener class-name="example.logging.Logger" />
     </listeners>
 
     <parameter name="project" value="local example" />
-    <test name="Smava task" group-by-instances="true">
+    <test name="Uberall task" group-by-instances="true">
         <classes>
-            <class name="example.tests.SmavaTest" />
+            <class name="example.tests.UberallTest" />
         </classes>
     </test>
 </suite>
